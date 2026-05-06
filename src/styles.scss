@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@use './app/shared/styles/tokens' as tokens;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  color: tokens.$color-text;
+}
+
+button,
+input {
+  font: inherit;
+}

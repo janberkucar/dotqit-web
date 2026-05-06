@@ -1,0 +1,48 @@
+<section class="page-shell">
+  <h1 class="title">{{ text('auth.title') }}</h1>
+  <p class="subtitle">{{ text('auth.hint') }}</p>
+
+  <label for="language">Language</label>
+  <select
+    id="language"
+    [ngModel]="languageService.language()"
+    (ngModelChange)="setLanguage($event)"
+    name="language"
+  >
+    @for (code of supportedLanguages; track code) {
+    <option [value]="code">{{ text('language.' + code) }}</option>
+    }
+  </select>
+
+  <form class="basic-form" (ngSubmit)="submit()">
+    <label for="email">{{ text('auth.email') }}</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      [(ngModel)]="email"
+      required
+      autocomplete="email"
+    />
+
+    <label for="password">{{ text('auth.password') }}</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      [(ngModel)]="password"
+      required
+      autocomplete="current-password"
+    />
+
+    <button type="submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? text('auth.loggingIn') : text('auth.login') }}
+    </button>
+  </form>
+
+  @if (errorMessage()) {
+  <p class="error-text">{{ errorMessage() }}</p>
+  } @if (successMessage()) {
+  <p class="success-text">{{ successMessage() }}</p>
+  }
+</section>

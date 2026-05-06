@@ -1,0 +1,178 @@
+// ============================================================================
+// FONT IMPORTS
+// ============================================================================
+
+// Legacy fonts
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
+// Font Families
+$font-family-base: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+  'Helvetica Neue', sans-serif;
+$font-family-primary: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+  'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+  'Droid Sans', 'Helvetica Neue', sans-serif;
+$font-family-secondary: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+  'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+  'Droid Sans', 'Helvetica Neue', sans-serif;
+$font-family-tertiary: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+  'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+  'Droid Sans', 'Helvetica Neue', sans-serif;
+$font-family-logo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont,
+  sans-serif;
+$font-family-mono: 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code',
+  'Roboto Mono', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+
+// Font Sizes
+$font-size-xs: 0.75rem; // 12px - text-xs
+$font-size-sm: 0.875rem; // 14px - text-sm
+$font-size-base: 1.2rem; // 16px - text-base
+$font-size-lg: 1.325rem; // 18px - text-lg
+$font-size-xl: 1.75rem; // 20px - text-xl
+$font-size-2xl: 2rem; // 24px - text-2xl
+$font-size-3xl: 2.875rem; // 30px - text-3xl
+$font-size-4xl: 3.25rem; // 36px - text-4xl
+$font-size-5xl: 4rem; // 48px - text-5xl
+$font-size-6xl: 5rem; // 80px - text-6xl
+$font-size-7xl: 6rem; // 96px - text-7xl
+
+$font-size-heading-1: $font-size-2xl;
+$font-size-heading-title-serif: $font-size-4xl;
+$font-size-cta-title: $font-size-base;
+$font-size-paragraph: $font-size-base;
+$font-size-heading-title: $font-size-4xl;
+$font-size-heading-3: $font-size-2xl;
+$font-size-heading-hero: $font-size-5xl;
+
+// UstadTypography Mapping
+$font-size-text-nav: $font-size-base;
+$font-size-paragraph-description: $font-size-base;
+$font-size-footnote: $font-size-base;
+$font-size-heading-1-bold: $font-size-xl;
+$font-size-title-serif-span: $font-size-5xl;
+
+// Letter spacing
+$letter-spacing-base: -0.186rem;
+
+// Text System
+$color-text-primary: #000000; // Black for primary text
+$color-text-secondary: #374151; // Gray-700 from your components
+$color-text-tertiary: #6b7280; // Gray-600 from your components
+$color-text-inverse: #ffffff; // White text for dark backgrounds
+$color-text-dark: #111827; // Gray-900 from your components
+$color-text-light: #fafafa; // Light text variant
+$color-text-muted: #9ca3af; // Gray-400 for muted text
+
+// Selected color text.
+$color-text: $color-text-dark;
+
+// Selected accent color.
+$color-primary: #8f390f;
+
+// Background System
+$color-background: #fafafa;
+$color-background-primary: #ffffff; // Pure white for main content
+$color-background-secondary: #fcfcff; // Very light pink-gray for subtle separation
+$color-background-tertiary: #f1f3f4; // Light gray for cards and elevated content
+$color-background-accent: rgba(
+  126,
+  75,
+  80,
+  0.08
+); // Subtle green tint for highlights
+$color-background-light: #ffffff; // White background
+$color-background-dark: #241b3b; // Dark background for contrast
+$color-background-amber: #fef3c7; // Amber background from your components
+$color-background-gray: #f9fafb; // Gray background from your components
+
+// Selected background color
+$color-surface: $color-background;
+
+// Border System
+$color-border: rgba(0, 0, 0, 0.08); // Default border color
+$color-border-primary: rgba(0, 0, 0, 0.08); // Very subtle borders
+$color-border-secondary: rgba(0, 0, 0, 0.04); // Even more subtle
+$color-border-accent: rgba(76, 175, 80, 0.2); // Green accent borders
+$color-border-dark: #0f172a; // Dark borders
+$color-border-light: rgba(255, 255, 255, 0.1); // Light borders
+
+// Interactive/Disabled Colors
+$color-disabled: #f5f5f5; // Light gray for disabled backgrounds
+$color-text-disabled: #9ca3af; // Gray text for disabled states
+
+$color-error: #ea4335; // Google-style error red
+$color-success: #16a34a; // Green-600 from your Check icon
+
+// ============================================================================
+// SPACING SYSTEM
+// ============================================================================
+
+// Base Spacing Units
+$spacing-0: 0; // 0px
+$spacing-px: 1px; // 1px
+$spacing-0-5: 0.125rem; // 2px
+$spacing-1: 0.25rem; // 4px
+$spacing-1-5: 0.375rem; // 6px
+$spacing-2: 0.5rem; // 8px
+$spacing-2-5: 0.625rem; // 10px
+$spacing-3: 0.75rem; // 12px
+$spacing-xs: 0.75rem; // 12px - alias for spacing-3
+$spacing-3-5: 0.875rem; // 14px
+$spacing-4: 1rem; // 16px
+$spacing-5: 1.25rem; // 20px
+$spacing-6: 1.5rem; // 24px
+$spacing-7: 1.75rem; // 28px
+$spacing-8: 2rem; // 32px
+$spacing-9: 2.25rem; // 36px
+$spacing-10: 2.5rem; // 40px
+$spacing-11: 2.75rem; // 44px
+$spacing-12: 3rem; // 48px
+$spacing-14: 3.5rem; // 56px
+$spacing-16: 4rem; // 64px
+$spacing-20: 5rem; // 80px
+$spacing-24: 6rem; // 96px
+$spacing-28: 7rem; // 112px
+$spacing-32: 8rem; // 128px
+$spacing-36: 9rem; // 144px
+$spacing-40: 10rem; // 160px
+$spacing-44: 11rem; // 176px
+$spacing-48: 12rem; // 192px
+$spacing-52: 13rem; // 208px
+$spacing-56: 14rem; // 224px
+$spacing-60: 15rem; // 240px
+$spacing-64: 16rem; // 256px
+$spacing-72: 18rem; // 288px
+$spacing-80: 20rem; // 320px
+$spacing-96: 24rem; // 384px
+
+$spacing-none: 0;
+$spacing-sm: 0.5rem; // 8px - alias for spacing-2
+$spacing-md: 1rem; // 16px - alias for spacing-4
+$spacing-lg: 1.5rem; // 24px - alias for spacing-6
+$spacing-xl: 2rem; // 32px - alias for spacing-8
+$spacing-2xl: 3rem; // 48px - alias for spacing-12
+$spacing-3xl: 1.875rem; // 30px - alias for spacing-7
+$spacing-4xl: 2.25rem; // 36px - alias for spacing-9
+
+// ============================================================================
+// BORDER RADIUS SYSTEM
+// ============================================================================
+
+// Border Radius
+$border-radius-none: 0;
+$border-radius-sm: 0.375rem; // 2px
+$border-radius-md: 0.5rem; // 6px
+$border-radius-lg: 0.625rem; // 8px
+$border-radius-xl: 0.875rem; // 12px
+$border-radius-2xl: 1rem; // 16px
+$border-radius-3xl: 1.125rem; // 24px
+$border-radius-full: 9999px;
+$border-radius: $border-radius-lg; // 4px
+
+$radius-sm: 0.375rem;
+$radius-md: 0.5rem;

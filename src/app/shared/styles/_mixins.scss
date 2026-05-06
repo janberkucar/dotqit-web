@@ -1,0 +1,44 @@
+@use './tokens' as tokens;
+@mixin page-shell($max-width: 48rem) {
+  font-family: tokens.$font-family-base;
+  max-width: $max-width;
+  margin: tokens.$spacing-xl auto;
+  padding-inline: tokens.$spacing-md;
+}
+@mixin card {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  max-width: 24vw;
+  background: tokens.$color-background-accent;
+  padding: tokens.$spacing-xl tokens.$spacing-sm;
+  margin: auto;
+  border: 1px solid tokens.$color-border;
+  border-radius: tokens.$radius-md;
+ }
+
+.title {
+  font-family: tokens.$font-family-base;
+  font-size: tokens.$font-size-heading-title-serif;
+  letter-spacing: tokens.$letter-spacing-base;
+  margin: tokens.$spacing-md 0;
+}
+.subtitle {
+  font-family: tokens.$font-family-base;
+  font-size: 0.875rem;
+  color: tokens.$color-text-muted;
+  line-height: 1.5;
+  font-weight: 400;
+  margin: tokens.$spacing-sm 0;
+}
+.cta, button {
+  width: fit-content;
+  font-weight: 600;
+  text-decoration: none;
+  background: tokens.$color-background-accent;
+  color: tokens.$color-primary;
+  border: 1px solid tokens.$color-primary;
+  border-radius: tokens.$border-radius-full;
+  padding: tokens.$spacing-2 tokens.$spacing-6;
+  margin: tokens.$spacing-3 auto;
+}

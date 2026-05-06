@@ -7,8 +7,11 @@ export class StateDemoStore {
   private readonly _items = signal<DemoItem[]>([]);
 
   readonly counter = this._counter.asReadonly();
+
   readonly items = this._items.asReadonly();
+
   readonly itemCount = computed(() => this._items().length);
+
   readonly summary = computed(
     () => `counter=${this._counter()} items=${this._items().length}`,
   );
@@ -31,6 +34,10 @@ export class StateDemoStore {
 
   decrement(): void {
     this._counter.update((v) => v - 1);
+  }
+
+  resetCounter(): void {
+    this._counter.set(0);
   }
 
   addItem(label: string): void {
