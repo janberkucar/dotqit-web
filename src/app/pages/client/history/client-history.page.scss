@@ -1,0 +1,5 @@
+@use '../../../shared/styles/tokens' as tokens;
+
+.row {
+  margin: tokens.$spacing-2 0;
+}

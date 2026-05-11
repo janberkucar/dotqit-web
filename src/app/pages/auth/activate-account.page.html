@@ -1,0 +1,45 @@
+<section class="page-shell">
+  <h1 class="title">Activate Account</h1>
+  <p class="subtitle">Paste the 6-digit code from MailDev email.</p>
+
+  <form class="basic-form" (ngSubmit)="submit()">
+    <label for="code">Activation code</label>
+    <input
+      id="code"
+      name="code"
+      type="text"
+      [(ngModel)]="code"
+      required
+      minlength="4"
+      maxlength="12"
+      autocomplete="one-time-code"
+    />
+
+    <button type="submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? 'Activating...' : 'Activate' }}
+    </button>
+  </form>
+
+  <div class="helper-row">
+    <label for="email">Email for resend</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      [(ngModel)]="email"
+      autocomplete="email"
+    />
+    <button type="button" (click)="resendActivation()" [disabled]="isSubmitting()">
+      Resend activation code
+    </button>
+  </div>
+
+  <p><a routerLink="/login">Back to login</a></p>
+  <p><a routerLink="/login/register">Need an account? Register</a></p>
+
+  @if (errorMessage()) {
+  <p class="error-text">{{ errorMessage() }}</p>
+  } @if (successMessage()) {
+  <p class="success-text">{{ successMessage() }}</p>
+  }
+</section>

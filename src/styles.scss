@@ -1,5 +1,15 @@
 @use './app/shared/styles/tokens' as tokens;
 
+:root {
+  --status-detected: #{tokens.$status-detected};
+  --status-confirmed: #{tokens.$status-confirmed};
+  --status-dispatched: #{tokens.$status-dispatched};
+  --status-restoring: #{tokens.$status-restoring};
+  --status-restored: #{tokens.$status-restored};
+  --status-cancelled: #{tokens.$status-cancelled};
+  --status-unknown: #{tokens.$status-unknown};
+}
+
 *,
 *::before,
 *::after {

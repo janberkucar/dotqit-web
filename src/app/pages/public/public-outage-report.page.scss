@@ -1,0 +1,10 @@
+@use '../../shared/styles/tokens' as tokens;
+
+.panel {
+  max-width: 560px;
+  margin: tokens.$spacing-6 auto;
+  padding: tokens.$spacing-6;
+  border: 1px solid tokens.$color-border;
+  border-radius: tokens.$border-radius-xl;
+  background: tokens.$color-background-primary;
+}

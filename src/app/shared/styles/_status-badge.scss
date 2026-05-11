@@ -1,0 +1,14 @@
+@use './tokens' as tokens;
+
+@mixin status-badge-toned($tone: 'unknown') {
+  display: inline-flex;
+  align-items: center;
+  gap: tokens.$spacing-1;
+  padding: tokens.$spacing-1 tokens.$spacing-3;
+  border-radius: tokens.$border-radius-full;
+  font-size: tokens.$font-size-xs;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: tokens.$color-text-inverse;
+  background: var(--status-#{$tone});
+}

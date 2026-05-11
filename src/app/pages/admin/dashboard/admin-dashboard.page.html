@@ -1,0 +1,77 @@
+<section class="page-shell">
+  <h1 class="title">Admin console</h1>
+
+  @if (admin.loading()) {
+  <p>Loading catalog…</p>
+  } @else if (admin.error()) {
+  <p>{{ admin.error() }}</p>
+  }
+
+  <div class="dashboard-container">
+    <div class="card">
+      <strong>Active outages</strong>
+      <p>{{ kpis()?.activeOutageCount ?? outageStatus.activeAdminCount() }}</p>
+    </div>
+    <div class="card">
+      <strong>MTTR (90d)</strong>
+      <p>{{ formatMttr() }}</p>
+    </div>
+    <div class="card">
+      <strong>Notifications</strong>
+      <p>{{ unreadNotifications() }} unread</p>
+    </div>
+    <div class="card">
+      <strong>Reports tracked</strong>
+      <p>{{ outageStatus.adminList().length }}</p>
+    </div>
+  </div>
+
+  @if (kpis(); as k) {
+  <h2>Open by type</h2>
+  <ul>
+    @for (row of k.openByType; track row.key) {
+    <li>{{ row.key }}: {{ row.count }}</li>
+    }
+  </ul>
+
+  <h2>Open by severity</h2>
+  <ul>
+    @for (row of k.openBySeverity; track row.key) {
+    <li>{{ row.key }}: {{ row.count }}</li>
+    }
+  </ul>
+  }
+
+  <h2>Recent reports</h2>
+  <ul>
+    @for (item of outageStatus.adminList().slice(0, 8); track item.id) {
+    <li>
+      <a [routerLink]="['/admin/outages', item.id]">{{ item.title }}</a>
+      — {{ item.isPublished ? 'published' : 'draft' }}
+    </li>
+    }
+  </ul>
+
+  <div class="map-placeholder">
+    Map integration placeholder — wire Leaflet / Maps later.
+  </div>
+
+  <p>Affected services catalog: {{ admin.services().length }}</p>
+  <p>Users: {{ admin.users().length }}</p>
+
+  <nav>
+    <a routerLink="/admin/outages">Manage outages</a>
+    |
+    <a routerLink="/admin/inbox">Inbox</a>
+    |
+    <a routerLink="/admin/notifications">Notifications</a>
+    |
+    <a routerLink="/admin/analytics">Analytics</a>
+    |
+    <a routerLink="/admin/services">Affected services</a>
+    |
+    <a routerLink="/admin/users">Users & roles</a>
+    |
+    <a routerLink="/client/dashboard">Client view</a>
+  </nav>
+</section>

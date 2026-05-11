@@ -1,0 +1,29 @@
+@use '../../../shared/styles/tokens' as tokens;
+@use '../../../shared/styles/mixins' as mixins;
+
+.page-shell {
+  @include mixins.page-shell(1080px);
+}
+
+.dashboard-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: tokens.$spacing-6 0;
+}
+
+.card {
+  @include mixins.card;
+}
+
+.map-placeholder {
+  margin-top: tokens.$spacing-6;
+  padding: tokens.$spacing-8;
+  border: 2px dashed tokens.$color-border;
+  border-radius: tokens.$border-radius-lg;
+  text-align: center;
+  color: tokens.$color-text-tertiary;
+}

@@ -5,7 +5,13 @@ import { Observable, map, tap } from 'rxjs';
 import { mapLoginResponseDtoToSession } from '../mappers/auth.mapper';
 /** Model Imports */
 import { AuthSession } from '../../shared/models/auth-session.model';
-import { LoginRequestDto } from '../api/dto/auth.dto';
+import {
+  ActivateAccountRequestDto,
+  LoginRequestDto,
+  RegisterRequestDto,
+  RegisterResponseDto,
+  ResendActivationRequestDto,
+} from '../api/dto/auth.dto';
 import { AuthApiService } from '../api/services/auth-api.service';
 import { SessionService } from './session.service';
 
@@ -13,7 +19,9 @@ import { SessionService } from './session.service';
 export class AuthService {
   private readonly authApi = inject(AuthApiService);
   private readonly sessionStore = inject(SessionService);
-  private readonly _session = signal<AuthSession | null>(this.sessionStore.read());
+  private readonly _session = signal<AuthSession | null>(
+    this.sessionStore.read(),
+  );
 
   readonly session = this._session.asReadonly();
 
@@ -26,6 +34,20 @@ export class AuthService {
       map(mapLoginResponseDtoToSession),
       tap((session) => this.setSession(session)),
     );
+  }
+
+  register(payload: RegisterRequestDto): Observable<RegisterResponseDto> {
+    return this.authApi.register(payload);
+  }
+
+  activate(payload: ActivateAccountRequestDto): Observable<string> {
+    return this.authApi.activate(payload).pipe(map((response) => response.message));
+  }
+
+  resendActivation(payload: ResendActivationRequestDto): Observable<string> {
+    return this.authApi
+      .resendActivation(payload)
+      .pipe(map((response) => response.message));
   }
 
   restoreSession(): void {

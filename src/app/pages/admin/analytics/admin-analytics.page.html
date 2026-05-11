@@ -1,0 +1,59 @@
+<section>
+  <h1>Analytics</h1>
+  <nav>
+    <a routerLink="/admin/dashboard">Dashboard</a>
+  </nav>
+
+  @if (kpis(); as k) {
+  <p>Active outages: {{ k.activeOutageCount }}</p>
+  <p>
+    MTTR (90d):
+    {{ k.mttrMinutes == null ? '—' : (k.mttrMinutes | number : '1.0-0') + ' min' }}
+  </p>
+
+  <h2>Open by type</h2>
+  <table>
+    @for (row of k.openByType; track row.key) {
+    <tr>
+      <td>{{ row.key }}</td>
+      <td>{{ row.count }}</td>
+    </tr>
+    }
+  </table>
+
+  <h2>Open by severity</h2>
+  <table>
+    @for (row of k.openBySeverity; track row.key) {
+    <tr>
+      <td>{{ row.key }}</td>
+      <td>{{ row.count }}</td>
+    </tr>
+    }
+  </table>
+
+  <h2>Resolved (last 14 days)</h2>
+  <svg
+    class="chart"
+    viewBox="0 0 280 72"
+    role="img"
+    aria-label="Resolved outages last 14 days"
+  >
+    <polyline
+      fill="none"
+      stroke="#8f390f"
+      stroke-width="2"
+      [attr.points]="sparklinePoints(k.resolvedLast14Days)"
+    />
+  </svg>
+  <table>
+    @for (row of k.resolvedLast14Days; track row.day) {
+    <tr>
+      <td>{{ row.day }}</td>
+      <td>{{ row.resolvedCount }}</td>
+    </tr>
+    }
+  </table>
+  } @else {
+  <p>Unable to load KPIs.</p>
+  }
+</section>

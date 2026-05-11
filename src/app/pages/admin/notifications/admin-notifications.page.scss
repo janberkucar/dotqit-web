@@ -1,0 +1,12 @@
+@use '../../../shared/styles/tokens' as tokens;
+
+.note {
+  padding: tokens.$spacing-3;
+  border: 1px solid tokens.$color-border;
+  border-radius: tokens.$border-radius-md;
+  margin: tokens.$spacing-3 0;
+}
+
+.unread {
+  background: tokens.$color-background-amber;
+}

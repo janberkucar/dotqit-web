@@ -1,0 +1,104 @@
+<section class="page-shell">
+  <h1 class="title">Create first administrator</h1>
+
+  @if (statusLoading()) {
+  <p class="subtitle">Checking availability…</p>
+  } @else if (apiUnreachable()) {
+  <p class="subtitle error-text">
+    Could not reach the API. Start the backend from
+    <code>dotqit-hr-api/DotQiTHrApi</code> with
+    <code>dotnet run</code>, ensure Postgres is up (<code>docker compose up -d</code>
+    in <code>dotqit-hr-api</code>), and confirm <code>proxy.conf.json</code> targets
+    the same URL as <code>Properties/launchSettings.json</code>
+    (default <code>http://localhost:5077</code>). On macOS, avoid port 5000 — it is
+    often taken by AirPlay Receiver.
+  </p>
+  <p><a routerLink="/login">Back to login</a></p>
+  } @else if (!showBootstrapForm()) {
+  <p class="subtitle">
+    First-administrator bootstrap is turned off for this API configuration, or
+    someone already has the Admin role.
+  </p>
+  <ul>
+    <li>
+      Run the API with <code>ASPNETCORE_ENVIRONMENT=Development</code> (see
+      <code>Properties/launchSettings.json</code>), <strong>or</strong>
+    </li>
+    <li>
+      Set <code>Bootstrap__AllowInitialAdmin=true</code> on the API (only when
+      you intentionally accept this risk), <strong>and</strong>
+    </li>
+    <li>Ensure no user currently has the <code>Admin</code> role.</li>
+  </ul>
+  <p><a routerLink="/login">Back to login</a></p>
+  } @else {
+  <p class="subtitle">
+    Creates an activated account with the Admin role so you can open the admin
+    console. Disabled automatically once an administrator exists.
+  </p>
+
+  <form class="basic-form" (ngSubmit)="submit()">
+    <label for="firstName">First name</label>
+    <input
+      id="firstName"
+      name="firstName"
+      type="text"
+      [(ngModel)]="firstName"
+      required
+      autocomplete="given-name"
+    />
+
+    <label for="lastName">Last name</label>
+    <input
+      id="lastName"
+      name="lastName"
+      type="text"
+      [(ngModel)]="lastName"
+      required
+      autocomplete="family-name"
+    />
+
+    <label for="email">Email</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      [(ngModel)]="email"
+      required
+      autocomplete="email"
+    />
+
+    <label for="password">Password</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      [(ngModel)]="password"
+      required
+      autocomplete="new-password"
+      minlength="8"
+    />
+
+    <label for="dateOfBirth">Date of birth</label>
+    <input
+      id="dateOfBirth"
+      name="dateOfBirth"
+      type="date"
+      [(ngModel)]="dateOfBirth"
+      required
+    />
+
+    <button type="submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? 'Creating…' : 'Create administrator' }}
+    </button>
+  </form>
+
+  <p><a routerLink="/login">Back to login</a></p>
+
+  @if (errorMessage()) {
+  <p class="error-text">{{ errorMessage() }}</p>
+  } @if (successMessage()) {
+  <p class="success-text">{{ successMessage() }}</p>
+  }
+  }
+</section>

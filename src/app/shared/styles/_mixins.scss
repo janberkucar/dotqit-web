@@ -9,10 +9,8 @@
   display: flex;
   flex-direction: column;
   width: auto;
-  max-width: 864px;
-  background: tokens.$color-background-accent;
-  padding: tokens.$spacing-xl tokens.$spacing-sm;
-  margin: auto;
+  min-width: 200px;
+  padding: tokens.$spacing-xl tokens.$spacing-md;
   border: 1px solid tokens.$color-border;
   border-radius: tokens.$radius-md;
 }

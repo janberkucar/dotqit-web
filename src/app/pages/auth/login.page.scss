@@ -5,6 +5,10 @@
   @include mixins.page-shell(720px);
 }
 
+.card {
+  @include mixins.card;
+}
+
 .basic-form {
   display: grid;
   margin: tokens.$spacing-xl auto;

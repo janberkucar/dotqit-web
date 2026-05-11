@@ -1,0 +1,16 @@
+<section>
+  <h1>My outage reports</h1>
+  <nav>
+    <a routerLink="/client/dashboard">Dashboard</a>
+  </nav>
+
+  @for (item of rows(); track item.id) {
+  <div class="row">
+    <a [routerLink]="['/client/outages', item.id]">{{ item.title }}</a>
+    — {{ item.status | outageStatus }}
+    — {{ item.isPublished ? 'visible publicly' : 'pending review' }}
+  </div>
+  } @empty {
+  <p>No submissions yet.</p>
+  }
+</section>

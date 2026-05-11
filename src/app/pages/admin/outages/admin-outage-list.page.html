@@ -1,0 +1,23 @@
+<section>
+  <h1>Admin — outages</h1>
+  <nav>
+    <a routerLink="/admin/dashboard">Dashboard</a>
+    |
+    <a routerLink="/admin/inbox">Inbox</a>
+  </nav>
+
+  <ul>
+    @for (item of outageStatus.adminList(); track item.id) {
+    <li>
+      <a [routerLink]="['/admin/outages', item.id]">{{ item.title }}</a>
+      —
+      <span class="badge" [style.background]="badgeStyle(item.status)">{{
+        item.status | outageStatus
+      }}</span>
+      — {{ severityLabels[item.severity] }} — published:
+      {{ item.isPublished ? 'yes' : 'no' }} — source:
+      {{ sourceLabels[item.source] }}
+    </li>
+    }
+  </ul>
+</section>

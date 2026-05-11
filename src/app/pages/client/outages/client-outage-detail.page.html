@@ -1,0 +1,59 @@
+<section>
+  <nav>
+    <a routerLink="/client/outages">Back to list</a>
+  </nav>
+
+  @if (outages.loading()) {
+  <p>Loading…</p>
+  } @else if (outages.error()) {
+  <p>{{ outages.error() }}</p>
+  } @else {
+    @if (outages.detail(); as o) {
+    <h1>{{ o.title }}</h1>
+    <p>
+      Severity: {{ severityLabels[o.severity] }} —
+      <span class="badge" [style.background]="badgeStyle(o.status)">{{
+        o.status | outageStatus
+      }}</span>
+    </p>
+    <p>Reporter: {{ o.reporterEmail }}</p>
+    <p>Started: {{ o.startedAtUtc | date : 'medium' }}</p>
+    @if (o.estimatedRestorationUtc) {
+    <p>
+      Estimated restoration:
+      {{ o.estimatedRestorationUtc | date : 'medium' }}
+    </p>
+    }
+    @if (o.resolvedAtUtc) {
+    <p>Resolved: {{ o.resolvedAtUtc | date : 'medium' }}</p>
+    }
+
+    <h2>Public update</h2>
+    <p>{{ o.publicMessage }}</p>
+
+    @if (isReporter()) {
+    <h2>Internal description</h2>
+    <p>{{ o.description }}</p>
+    }
+
+    <h2>Affected services</h2>
+    <ul>
+      @for (s of o.affectedServices; track s.id) {
+      <li>{{ s.name }} ({{ s.environment }}) — {{ s.criticality }}</li>
+      }
+    </ul>
+
+    <h2>Timeline</h2>
+    <ul>
+      @for (u of o.updates; track u.id) {
+      <li>
+        {{ u.createdAtUtc | date : 'medium' }} —
+        {{ u.message }}
+      </li>
+      }
+    </ul>
+    } @else {
+    <p>Outage not found.</p>
+    }
+  }
+</section>

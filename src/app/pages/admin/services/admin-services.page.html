@@ -1,0 +1,31 @@
+<section>
+  <h1>Affected services</h1>
+  <nav><a routerLink="/admin/dashboard">Dashboard</a></nav>
+
+  @if (admin.loading()) {
+  <p>Loading…</p>
+  } @else if (admin.error()) {
+  <p>{{ admin.error() }}</p>
+  }
+
+  <h2>New service</h2>
+  <label>Name</label>
+  <input [(ngModel)]="name" />
+  <label>Environment</label>
+  <input [(ngModel)]="environment" />
+  <label>Owner</label>
+  <input [(ngModel)]="owner" />
+  <label>Criticality</label>
+  <input [(ngModel)]="criticality" />
+  <button type="button" (click)="create()">Create</button>
+
+  <h2>Catalog</h2>
+  <ul>
+    @for (s of admin.services(); track s.id) {
+    <li>
+      {{ s.name }} — {{ s.environment }} — {{ s.owner }} — {{ s.criticality }}
+      <button type="button" (click)="remove(s.id)">Delete</button>
+    </li>
+    }
+  </ul>
+</section>

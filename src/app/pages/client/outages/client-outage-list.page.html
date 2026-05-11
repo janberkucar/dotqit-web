@@ -1,0 +1,26 @@
+<section>
+  <h1>Outages</h1>
+  <nav>
+    <a routerLink="/client/dashboard">Dashboard</a> |
+    <a routerLink="/client/outages/new">New report</a> |
+    <a routerLink="/client/history">My history</a> |
+    <a routerLink="/public/report">Public report (no login)</a>
+  </nav>
+
+  <ul>
+    @for (item of outageStatus.publicFeed(); track item.id) {
+    <li>
+      <a [routerLink]="['/client/outages', item.id]">{{ item.title }}</a>
+      —
+      <span class="badge" [style.background]="badgeStyle(item.status)">{{
+        item.status | outageStatus
+      }}</span>
+      — {{ severityLabels[item.severity] }}
+      — {{ item.startedAtUtc | date : 'short' }}
+      @if (item.estimatedRestorationUtc) {
+      — ETA {{ item.estimatedRestorationUtc | date : 'short' }}
+      }
+    </li>
+    }
+  </ul>
+</section>

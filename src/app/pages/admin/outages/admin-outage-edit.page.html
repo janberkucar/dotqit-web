@@ -1,0 +1,119 @@
+<section>
+  <nav>
+    <a routerLink="/admin/outages">Back to list</a>
+  </nav>
+
+  @if (outages.loading()) {
+  <p>Loading…</p>
+  } @else if (outages.error()) {
+  <p>{{ outages.error() }}</p>
+  }
+
+  <h1>Edit outage</h1>
+
+  @if (!outages.loading() && outages.detail(); as d) {
+  <p>
+    Published:
+    <strong>{{ isPublishedFlag ? 'Yes' : 'No' }}</strong>
+    —
+    <span
+      class="status-pill"
+      [style.background]="badgeStyle(status)"
+      >{{ status | outageStatus }}</span
+    >
+  </p>
+  <p>
+    <button type="button" (click)="setPublished(true)" [disabled]="isPublishedFlag">
+      Publish to citizens
+    </button>
+    <button type="button" (click)="setPublished(false)" [disabled]="!isPublishedFlag">
+      Unpublish
+    </button>
+  </p>
+  }
+
+  <label for="title">Title</label>
+  <input id="title" [(ngModel)]="title" />
+
+  <label for="desc">Internal description</label>
+  <textarea id="desc" [(ngModel)]="description"></textarea>
+
+  <label for="pub">Public message</label>
+  <textarea id="pub" [(ngModel)]="publicMessage"></textarea>
+
+  <label for="otype">Outage type</label>
+  <select id="otype" [(ngModel)]="outageType">
+    @for (label of typeLabels; track $index) {
+    <option [ngValue]="$index">{{ label }}</option>
+    }
+  </select>
+
+  <label for="severity">Severity</label>
+  <select id="severity" [(ngModel)]="severity">
+    @for (label of severityLabels; track $index) {
+    <option [ngValue]="$index">{{ label }}</option>
+    }
+  </select>
+
+  <label for="status">Status</label>
+  <select id="status" [(ngModel)]="status">
+    @for (label of statusLabels; track $index) {
+    <option [ngValue]="$index">{{ label }}</option>
+    }
+  </select>
+
+  <label for="started">Started (UTC ISO)</label>
+  <input id="started" [(ngModel)]="startedAtUtc" />
+
+  <label for="resolved">Resolved (UTC ISO, optional)</label>
+  <input id="resolved" [(ngModel)]="resolvedAtUtc" />
+
+  <label for="eta">Estimated restoration (UTC ISO, optional)</label>
+  <input id="eta" [(ngModel)]="estimatedRestorationUtc" />
+
+  <label for="postal">Postal code</label>
+  <input id="postal" [(ngModel)]="postalCode" />
+
+  <label for="area">Area label</label>
+  <input id="area" [(ngModel)]="areaLabel" />
+
+  <label for="street">Street</label>
+  <input id="street" [(ngModel)]="street" />
+
+  <label for="crew">Assigned crew</label>
+  <input id="crew" [(ngModel)]="assignedCrew" />
+
+  <h2>Linked services</h2>
+  <ul>
+    @for (s of admin.services(); track s.id) {
+    <li>
+      <label>
+        <input
+          type="checkbox"
+          [checked]="isSelected(s.id)"
+          (change)="toggleService(s.id)"
+        />
+        {{ s.name }} ({{ s.environment }})
+      </label>
+    </li>
+    }
+  </ul>
+
+  <button type="button" (click)="save()">Save</button>
+  <button type="button" (click)="remove()">Delete outage</button>
+
+  <h2>Add timeline update</h2>
+  <textarea [(ngModel)]="timelineMessage"></textarea>
+  <button type="button" (click)="addUpdate()">Post update</button>
+
+  @if (!outages.loading() && !outages.error()) {
+    @if (outages.detail(); as o) {
+    <h2>Current timeline</h2>
+    <ul>
+      @for (u of o.updates; track u.id) {
+      <li>{{ u.createdAtUtc | date : 'medium' }} — {{ u.message }}</li>
+      }
+    </ul>
+    }
+  }
+</section>

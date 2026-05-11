@@ -1,0 +1,11 @@
+@use '../../../shared/styles/tokens' as tokens;
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: tokens.$spacing-1 tokens.$spacing-3;
+  border-radius: tokens.$border-radius-full;
+  font-size: tokens.$font-size-xs;
+  font-weight: 600;
+  color: tokens.$color-text-inverse;
+}

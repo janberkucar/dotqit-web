@@ -1,0 +1,20 @@
+@use '../../shared/styles/mixins' as mixins;
+@use '../../shared/styles/tokens' as tokens;
+
+.page-shell {
+  @include mixins.page-shell(720px);
+}
+
+.basic-form {
+  display: grid;
+  margin: tokens.$spacing-xl auto;
+  gap: tokens.$spacing-md;
+}
+
+.error-text {
+  color: tokens.$color-error;
+}
+
+.success-text {
+  color: tokens.$color-success;
+}

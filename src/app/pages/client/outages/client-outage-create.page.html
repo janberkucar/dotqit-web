@@ -1,0 +1,62 @@
+<section>
+  <h1>Report outage</h1>
+  <nav>
+    <a routerLink="/client/outages">Cancel</a>
+  </nav>
+
+  <label for="title">Title</label>
+  <input id="title" [(ngModel)]="title" />
+
+  <label for="desc">Description</label>
+  <textarea id="desc" [(ngModel)]="description"></textarea>
+
+  <label for="pub">Public message (optional)</label>
+  <textarea id="pub" [(ngModel)]="publicMessage"></textarea>
+
+  <label for="otype">Type</label>
+  <select id="otype" [(ngModel)]="outageType">
+    @for (label of typeLabels; track $index) {
+    <option [ngValue]="$index">{{ label }}</option>
+    }
+  </select>
+
+  <label for="severity">Severity</label>
+  <select id="severity" [(ngModel)]="severity">
+    @for (label of severityLabels; track $index) {
+    <option [ngValue]="$index">{{ label }}</option>
+    }
+  </select>
+
+  <label for="started">Started (UTC ISO)</label>
+  <input id="started" [(ngModel)]="startedAtUtc" />
+
+  <label for="postal">Postal code</label>
+  <input id="postal" [(ngModel)]="postalCode" />
+
+  <label for="area">Area</label>
+  <input id="area" [(ngModel)]="areaLabel" />
+
+  <label for="street">Street</label>
+  <input id="street" [(ngModel)]="street" />
+
+  <label for="eta">Estimated restoration (UTC ISO, optional)</label>
+  <input id="eta" [(ngModel)]="estimatedRestorationUtc" />
+
+  <h2>Affected services</h2>
+  <ul>
+    @for (s of availableServices(); track s.id) {
+    <li>
+      <label>
+        <input
+          type="checkbox"
+          [checked]="isSelected(s.id)"
+          (change)="toggleService(s.id)"
+        />
+        {{ s.name }} ({{ s.environment }})
+      </label>
+    </li>
+    }
+  </ul>
+
+  <button type="button" (click)="submit()">Submit report</button>
+</section>

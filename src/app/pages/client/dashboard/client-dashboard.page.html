@@ -1,0 +1,73 @@
+<section>
+  <h1>Outage portal (client)</h1>
+
+  <p>
+    Active published outages:
+    <strong>{{ outageStatus.activePublicCount() }}</strong>
+  </p>
+
+  <label>
+    <input type="checkbox" disabled />
+    Push alerts — Subscribe (coming soon)
+  </label>
+
+  <div class="filters">
+    <label>
+      Postal code
+      <input
+        name="postal"
+        [ngModel]="postalFilter()"
+        (ngModelChange)="postalFilter.set($event)"
+      />
+    </label>
+    <label>
+      Area
+      <input
+        name="area"
+        [ngModel]="areaFilter()"
+        (ngModelChange)="areaFilter.set($event)"
+      />
+    </label>
+    <label>
+      Status
+      <select
+        #st
+        [value]="statusFilterSelectValue()"
+        (change)="onStatusSelect(st.value)"
+      >
+        <option value="">Any</option>
+        @for (label of statusLabels; track $index) {
+        <option [value]="$index">{{ label }}</option>
+        }
+      </select>
+    </label>
+  </div>
+
+  <h2>Filtered outages</h2>
+  <ul>
+    @for (item of filteredFeed(); track item.id) {
+    <li>
+      <a [routerLink]="['/client/outages', item.id]">{{ item.title }}</a>
+      —
+      <span class="badge" [style.background]="badgeStyle(item.status)">{{
+        item.status | outageStatus
+      }}</span>
+      — {{ severityLabels[item.severity] }}
+    </li>
+    }
+  </ul>
+
+  <nav>
+    <a routerLink="/client/outages">Browse outages</a>
+    |
+    <a routerLink="/client/outages/new">Report outage</a>
+    |
+    <a routerLink="/client/history">History</a>
+    |
+    <a routerLink="/public/report">Anonymous report</a>
+    @if (surface.hasAdminSurface()) {
+    |
+    <a routerLink="/admin/dashboard">Admin console</a>
+    }
+  </nav>
+</section>

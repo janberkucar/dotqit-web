@@ -1,0 +1,36 @@
+<section>
+  <h1>Users & roles</h1>
+  <nav><a routerLink="/admin/dashboard">Dashboard</a></nav>
+
+  @if (admin.loading()) {
+  <p>Loading…</p>
+  } @else if (admin.error()) {
+  <p>{{ admin.error() }}</p>
+  }
+
+  <ul>
+    @for (u of admin.users(); track u.id) {
+    <li>
+      <strong>{{ displayName(u) }}</strong> ({{ u.email }}) —
+      enabled: {{ u.enabled }}
+      <div>
+        Roles:
+        @for (r of u.roles; track r) {
+        <span>
+          {{ r }}
+          <button type="button" (click)="removeRole(u.id, r)">×</button>
+        </span>
+        }
+      </div>
+      <label [attr.for]="'role-' + u.id">Add role</label>
+      <input
+        [id]="'role-' + u.id"
+        [ngModel]="draftFor(u.id)"
+        (ngModelChange)="setDraft(u.id, $event)"
+        placeholder="Admin | Hr | Employee"
+      />
+      <button type="button" (click)="addRole(u.id)">Add</button>
+    </li>
+    }
+  </ul>
+</section>

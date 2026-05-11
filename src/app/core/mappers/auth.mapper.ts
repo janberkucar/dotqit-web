@@ -7,9 +7,10 @@ export function mapLoginResponseDtoToSession(
   return {
     accessToken: response.accessToken,
     user: {
-      id: response.user.id,
-      name: response.user.name,
+      id: response.user.id.toString(),
+      name: `${response.user.firstName} ${response.user.lastName}`.trim(),
       email: response.user.email,
+      roles: response.user.roles ?? [],
     },
   };
 }

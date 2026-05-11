@@ -1,0 +1,21 @@
+<section>
+  <h1>Notification center</h1>
+  <nav>
+    <a routerLink="/admin/dashboard">Dashboard</a>
+  </nav>
+
+  @for (n of rows(); track n.id) {
+  <article class="note" [class.unread]="!n.readAtUtc">
+    <p>{{ n.message }}</p>
+    <small>{{ n.createdAtUtc | date : 'medium' }}</small>
+    @if (!n.readAtUtc) {
+    <p><button type="button" (click)="markRead(n.id)">Mark read</button></p>
+    }
+    <p>
+      <a [routerLink]="['/admin/outages', n.outageReportId]">Open outage</a>
+    </p>
+  </article>
+  } @empty {
+  <p>No notifications.</p>
+  }
+</section>

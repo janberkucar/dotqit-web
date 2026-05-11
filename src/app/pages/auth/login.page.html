@@ -40,8 +40,21 @@
     </button>
   </form>
 
+  <p><a routerLink="/login/register">Create account</a></p>
+  <p><a routerLink="/login/activate">Activate account</a></p>
+  @if (showBootstrapAdminLink()) {
+  <p>
+    <a routerLink="/login/bootstrap-admin">Create first administrator (dev)</a>
+  </p>
+  }
+
   @if (errorMessage()) {
   <p class="error-text">{{ errorMessage() }}</p>
+  @if (canResendActivation()) {
+  <button type="button" (click)="resendActivation()" [disabled]="isSubmitting()">
+    {{ text('auth.resendActivation') }}
+  </button>
+  }
   } @if (successMessage()) {
   <p class="success-text">{{ successMessage() }}</p>
   }

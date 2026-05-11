@@ -7,7 +7,6 @@ const SESSION_STORAGE_KEY = 'qit.auth.session';
 
 @Injectable({ providedIn: 'root' })
 export class SessionService {
-
   save(session: AuthSession): void {
     if (typeof localStorage === 'undefined') {
       return;
@@ -25,7 +24,13 @@ export class SessionService {
       if (!parsed?.accessToken || !parsed?.user?.email) {
         return null;
       }
-      return parsed;
+      return {
+        ...parsed,
+        user: {
+          ...parsed.user,
+          roles: Array.isArray(parsed.user.roles) ? parsed.user.roles : [],
+        },
+      };
     } catch {
       return null;
     }

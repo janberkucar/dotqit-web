@@ -1,0 +1,7 @@
+@use '../../../shared/styles/tokens' as tokens;
+
+.chart {
+  width: 100%;
+  max-width: 520px;
+  margin: tokens.$spacing-4 0;
+}

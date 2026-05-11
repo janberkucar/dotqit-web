@@ -1,0 +1,24 @@
+<section>
+  <h1>Operator inbox</h1>
+  <p>Unpublished citizen/anonymous reports awaiting validation.</p>
+
+  <nav>
+    <a routerLink="/admin/dashboard">Dashboard</a>
+    |
+    <a routerLink="/admin/outages">All outages</a>
+  </nav>
+
+  <div class="row">
+    @for (item of drafts(); track item.id) {
+    <article class="row">
+      <a [routerLink]="['/admin/outages', item.id]">{{ item.title }}</a>
+      — {{ item.status | outageStatus }}
+      — {{ sourceLabels[item.source] }}
+      —
+      {{ item.reporterEmail || 'anonymous' }}
+    </article>
+    } @empty {
+    <p>No unpublished reports.</p>
+    }
+  </div>
+</section>
