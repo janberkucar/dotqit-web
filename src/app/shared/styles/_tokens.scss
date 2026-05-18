@@ -1,7 +1,6 @@
 // ============================================================================
 // FONT IMPORTS
 // ============================================================================
-
 // Legacy fonts
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bona+Nova:wght@400;700&display=swap');
@@ -15,52 +14,24 @@ $font-family-base:
   'Inter Tight',
   -apple-system,
   BlinkMacSystemFont,
-  'Segoe UI',
-  'Roboto',
-  'Oxygen',
-  'Ubuntu',
-  'Cantarell',
-  'Fira Sans',
-  'Droid Sans',
   'Helvetica Neue',
   sans-serif;
 $font-family-primary:
   'Inter Tight',
   -apple-system,
   BlinkMacSystemFont,
-  'Segoe UI',
-  'Roboto',
-  'Oxygen',
-  'Ubuntu',
-  'Cantarell',
-  'Fira Sans',
-  'Droid Sans',
   'Helvetica Neue',
   sans-serif;
 $font-family-secondary:
   'Inter Tight',
   -apple-system,
   BlinkMacSystemFont,
-  'Segoe UI',
-  'Roboto',
-  'Oxygen',
-  'Ubuntu',
-  'Cantarell',
-  'Fira Sans',
-  'Droid Sans',
   'Helvetica Neue',
   sans-serif;
 $font-family-tertiary:
   'Inter Tight',
   -apple-system,
   BlinkMacSystemFont,
-  'Segoe UI',
-  'Roboto',
-  'Oxygen',
-  'Ubuntu',
-  'Cantarell',
-  'Fira Sans',
-  'Droid Sans',
   'Helvetica Neue',
   sans-serif;
 $font-family-logo:
@@ -87,6 +58,7 @@ $font-size-7xl: 6rem; // 96px - text-7xl
 
 $font-size-heading-1: $font-size-2xl;
 $font-size-heading-title-serif: $font-size-4xl;
+$font-size-card-title-serif: $font-size-lg;
 $font-size-cta-title: $font-size-base;
 $font-size-paragraph: $font-size-base;
 $font-size-heading-title: $font-size-4xl;
@@ -101,7 +73,8 @@ $font-size-heading-1-bold: $font-size-xl;
 $font-size-title-serif-span: $font-size-5xl;
 
 // Letter spacing
-$letter-spacing-base: -0.186rem;
+$letter-spacing-base: -0.064rem;
+$letter-spacing-tight: -0.186rem;
 
 // Text System
 $color-text-primary: #000000; // Black for primary text
@@ -151,6 +124,17 @@ $color-text-disabled: #9ca3af; // Gray text for disabled states
 
 $color-error: #ea4335; // Google-style error red
 $color-success: #16a34a; // Green-600 from your Check icon
+
+// Card Tokens from eden.
+// Card / surface (from reference green rgb(9, 50, 31))
+$color-card-accent: rgb(9, 50, 31);
+$color-card-bg: rgba($color-card-accent, 0.06);
+$color-card-border: rgba($color-card-accent, 0.15);
+$color-card-shadow: rgba($color-card-accent, 0.22);
+$color-card-text: rgb(39, 37, 35);
+
+$border-radius-card: 1.25rem; // 20px — between your $border-radius-2xl (16px) and 3xl (24px)
+$shadow-card-elevated: 0 30px 80px -30px $color-card-shadow;
 
 // ============================================================================
 // SPACING SYSTEM

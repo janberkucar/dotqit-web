@@ -9,19 +9,19 @@
 
   <div class="dashboard-container">
     <div class="card">
-      <strong>Active outages</strong>
+      <h3 class="card__title">Active outages</h3>
       <p>{{ kpis()?.activeOutageCount ?? outageStatus.activeAdminCount() }}</p>
     </div>
     <div class="card">
-      <strong>MTTR (90d)</strong>
+      <h3 class="card__title">MTTR (90d)</h3>
       <p>{{ formatMttr() }}</p>
     </div>
     <div class="card">
-      <strong>Notifications</strong>
+      <h3 class="card__title">Notifications</h3>
       <p>{{ unreadNotifications() }} unread</p>
     </div>
     <div class="card">
-      <strong>Reports tracked</strong>
+      <h3 class="card__title">Reports tracked</h3>
       <p>{{ outageStatus.adminList().length }}</p>
     </div>
   </div>

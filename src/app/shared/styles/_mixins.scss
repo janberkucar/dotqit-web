@@ -5,20 +5,46 @@
   margin: tokens.$spacing-xl auto;
   padding-inline: tokens.$spacing-md;
 }
-@mixin card {
+
+@mixin card(
+  $padding: tokens.$spacing-1-5,
+  $radius: tokens.$border-radius-card,
+  $aspect-ratio: null,
+  $elevated: true
+) {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: auto;
-  min-width: 200px;
-  padding: tokens.$spacing-xl tokens.$spacing-md;
-  border: 1px solid tokens.$color-border;
-  border-radius: tokens.$radius-md;
+  min-width: 240px;
+  padding: $padding;
+  color: tokens.$color-card-text;
+  background-color: tokens.$color-card-bg;
+  border: 1px solid tokens.$color-card-border;
+  border-radius: $radius;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+
+  @if $aspect-ratio {
+    aspect-ratio: $aspect-ratio;
+  }
+
+  @if $elevated {
+    box-shadow: tokens.$shadow-card-elevated;
+  }
 }
 
+.card__title {
+  font-family: tokens.$font-family-secondary;
+  font-size: tokens.$font-size-card-title-serif;
+  letter-spacing: tokens.$letter-spacing-base;
+  margin: tokens.$spacing-sm 0;
+}
+
+/** Global Styles */
 .title {
   font-family: tokens.$font-family-base;
   font-size: tokens.$font-size-heading-title-serif;
-  letter-spacing: tokens.$letter-spacing-base;
+  letter-spacing: tokens.$letter-spacing-tight;
   margin: tokens.$spacing-md 0;
 }
 .subtitle {

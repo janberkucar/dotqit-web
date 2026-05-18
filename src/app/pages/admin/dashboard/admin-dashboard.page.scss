@@ -14,11 +14,9 @@
   flex-wrap: wrap;
   margin: tokens.$spacing-6 0;
 }
-
 .card {
-  @include mixins.card;
+  @include mixins.card();
 }
-
 .map-placeholder {
   margin-top: tokens.$spacing-6;
   padding: tokens.$spacing-8;
